@@ -2,9 +2,9 @@ package com.coder520.user.controller;
 
 import com.coder520.user.entity.User;
 import com.coder520.user.service.UserService;
-import com.sun.tools.internal.ws.processor.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -19,8 +19,9 @@ public class UserController {
         user.setMobile("1329853397");
         user.setRealName("laozhang");
         user.setUsername("hellxz");
+        user.setPassword("123456");
         int i = userService.createUser(user);
-        model.setProperty("result",i);
+        model.addAttribute("result",i);
         return "user";
     }
 }

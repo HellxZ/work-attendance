@@ -1,6 +1,6 @@
 <html>
 <head>测试页面</head>
 <body>
-TEST
+TEST ${result}
 </body>
 </html>

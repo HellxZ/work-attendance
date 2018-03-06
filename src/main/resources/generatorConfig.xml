@@ -5,7 +5,7 @@
 
     <!--classPathEntry:数据库的JDBC驱动 -->
     <classPathEntry
-            location="D:\mvnspon\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
+            location="F:\Repositories\Maven\mysql\mysql-connector-java\5.1.34\mysql-connector-java-5.1.34.jar" />
 
     <context id="MysqlTables" targetRuntime="MyBatis3">
 
@@ -39,7 +39,7 @@
         <!-- java模型生成器 -->
         <!-- targetProject:自动生成代码的位置 -->
         <javaModelGenerator targetPackage="com.coder520.user.entity"
-                            targetProject="D:\Git\work-attendance\src\main\java"
+                            targetProject="F:\work-attendance\src\main\java"
         >
             <!-- TODO enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="true" />
@@ -50,14 +50,14 @@
         <!-- 必须的（1 required） -->
         <!-- map xml 生成器 -->
         <sqlMapGenerator targetPackage="com.coder520.user.dao"
-                         targetProject="D:\Git\work-attendance\src\main\java">
+                         targetProject="F:\work-attendance\src\main\java">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!-- 可选的（0 or 1） -->
         <!-- mapper 或者就是dao接口生成器 -->
         <javaClientGenerator targetPackage="com.coder520.user.dao"
-                             targetProject="D:\Git\work-attendance\src\main\java"
+                             targetProject="F:\work-attendance\src\main\java"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
