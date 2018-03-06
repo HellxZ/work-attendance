@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd"
+>
+    <!--开启包扫描-->
+    <context:component-scan base-package="com.coder520">
+        <!--<context:exclude-filter type="annotation" expression="com.coder52"-->
+    </context:component-scan>
+    <!--开启注解驱动-->
+    <mvc:annotation-driven/>
+    <!--配置velocity-->
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/views/"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">utf-8</prop>
+                <prop key="output.encoding">utf-8</prop>
+                <prop key="file.resource.loader.cache">false</prop>
+                <prop key="file.resource.loader.modificationCheckInterval">1</prop><!--修改检查时间间隔-->
+                <prop key="velocimacro.library.autoreload">false</prop>
+            </props>
+        </property>
+    </bean>
+    <!--配置velocity页面解析器-->
+    <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="suffix" value=".vm"/>
+        <property name="contentType" value="text/html;charset=utf-8"/>
+        <property name="dateToolAttribute" value="date"/><!--日期处理工具-->
+    </bean>
+
+</beans>
