@@ -15,12 +15,4 @@ public class UserServiceImpl implements UserService{
     private UserMapper userMapper;
 
 
-    //创建用户
-    @Override
-    @Transactional
-    public int createUser(User user,User user1) {
-        int result = userMapper.insertSelective(user);
-        int result1 = userMapper.insertSelective(user1);
-        return result;
-    }
 }

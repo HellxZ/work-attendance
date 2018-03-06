@@ -28,6 +28,10 @@
             </props>
         </property>
     </bean>
+    <!--配置静态资源第一种方法-->
+    <!--<mvc:resources mapping="/static/**" location="/static/"/>-->
+    <!--配置静态资源第二种方法-->
+    <mvc:default-servlet-handler/>
     <!--配置velocity页面解析器-->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="suffix" value=".vm"/>
