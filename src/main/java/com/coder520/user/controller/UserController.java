@@ -13,6 +13,11 @@ import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @Author : Hellxz
+ * @Description: 用户controller
+ * @Date : 2018/3/7 12:46
+ */
 @Controller
 @RequestMapping("user")
 public class UserController {
@@ -20,11 +25,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * @Author: Hellxz
+     * @Description: 注册
+     * @Date: 2018/3/7 16:53
+     */
     @RequestMapping("/register")
+    @ResponseBody
     public String insert(@RequestBody User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         user.setPassword(SecurityUtils.encryptPwd(user.getPassword()));
         int i = userService.register(user);
-        return "user";
+        return "registerSucceed";
     }
 
     @RequestMapping("/home")
@@ -42,6 +53,12 @@ public class UserController {
     public User getUserInfo(HttpSession session){
         User user = (User) session.getAttribute("userinfo");
         return user;
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate(); //摧毁当前session
+        return "login"; //跳转回登录页
     }
 
 }

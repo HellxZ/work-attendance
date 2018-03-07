@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author : Hellxz
- * @Description: 检查session中是否有
+ * @Description: session拦截器，如果session中没有对象则拦截
  * @Date : 2018/3/7 12:41
  */
 public class SessionInterceptor implements HandlerInterceptor{
@@ -17,7 +17,7 @@ public class SessionInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String uri = request.getRequestURI();
-        if(uri.indexOf("login")>=0){ //uri中有login字样，说明是正常登录，放行
+        if((uri.indexOf("login")>=0)||(uri.indexOf("register")>=0)||(uri.indexOf("attend")>=0)){ //放行登录、注册、打卡
             return true;
         }
         User user = (User)request.getSession().getAttribute("userinfo");

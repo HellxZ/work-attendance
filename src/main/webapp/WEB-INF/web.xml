@@ -50,14 +50,17 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/static/*</url-pattern>
   </servlet-mapping>
-
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:log4j.properties</param-value>
+  </context-param>
   <!--添加错误页面-->
   <error-page>
     <error-code>404</error-code>
-    <location>/404.html</location>
+    <location>/error/404.html</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/500.html</location>
+    <location>/error/500.html</location>
   </error-page>
 </web-app>

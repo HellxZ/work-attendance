@@ -48,7 +48,7 @@
 
     <!--配置拦截器(全局拦截)，为了让静态资源得以访问，须设置web.xml-->
     <mvc:interceptors>
-        <bean class="com.coder520.common.interceptor.SessionInterceptor"/>
+        <bean class="com.coder520.common.interceptor.SessionInterceptor"></bean>
     </mvc:interceptors>
     <!--配置velocity页面解析器-->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
