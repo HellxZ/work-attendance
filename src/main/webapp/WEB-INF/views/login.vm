@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>签到系统登录</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -33,30 +33,28 @@
     <div class="login-box-body">
         <p class="login-box-msg">登录开始你的签到</p>
 
-        <form action="../../index2.html" method="post" id="login_form">
-            <div class="form-group has-feedback">
-                <input id="user" type="email" class="form-control" placeholder="请输入用户名">
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                <span id="user_alert" style="color:red;visibility: hidden">登录名不正确</span>
-            </div>
-            <div class="form-group has-feedback">
-                <input id="pwd" type="password" class="form-control" placeholder="请输入密码">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                <span id="pwd_alert" style="color:red;visibility: hidden">密码不正确</span>
-            </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox"> 记住我
-                        </label>
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <button id="submitBtn" type="button" class="btn btn-primary btn-block btn-flat">登录</button>
+        <div class="form-group has-feedback">
+            <input id="user" type="email" class="form-control" placeholder="请输入用户名">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <span id="user_alert" style="color:red;visibility: hidden">登录名不正确</span>
+        </div>
+        <div class="form-group has-feedback">
+            <input id="pwd" type="password" class="form-control" placeholder="请输入密码">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            <span id="pwd_alert" style="color:red;visibility: hidden">密码不正确</span>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox"> 记住我
+                    </label>
                 </div>
             </div>
-        </form>
+            <div class="col-xs-4">
+                <button id="submitBtn" type="button" class="btn btn-primary btn-block btn-flat">登录</button>
+            </div>
+        </div>
         <a href="#">忘记密码</a><br>
     </div>
     <!-- /.login-box-body -->
@@ -71,24 +69,35 @@
 <script src="/static/plugins/iCheck/icheck.min.js"></script>
 <script>
     $(function () {
-        $("#submitBtn").click(function(){
+        $("#submitBtn").click(function () {
             var user = $("#user").val();
             var pwd = $("#pwd").val();
             var verify = true;
-            if(user.length==0){
-                $("#user_alert").css("visibility","visible");
+            if (user.length == 0) {
+                $("#user_alert").css("visibility", "visible");
                 verify = false;
-            }else{
-                $("#user_alert").css("visibility","hidden");
+            } else {
+                $("#user_alert").css("visibility", "hidden");
             }
-            if(pwd.length==0){
-                $("#pwd_alert").css("visibility","visible");
+            if (pwd.length == 0) {
+                $("#pwd_alert").css("visibility", "visible");
                 verify = false;
-            }else{
-                $("#pwd_alert").css("visibility","hidden");
+            } else {
+                $("#pwd_alert").css("visibility", "hidden");
             }
-            if(verify){
-                $("#login_form").submit();
+            if (verify) {
+                $.ajax({
+                    type:"POST",
+                    url:"/login/check",
+                    data:{"username":user,"password":pwd},
+                    success:function(data){
+                        if(data == "loginSuccess"){
+                            window.location.href="/user/home";
+                        }else{
+                            alert("输入有误");
+                        }
+                    }
+                });
             }
         });
     });

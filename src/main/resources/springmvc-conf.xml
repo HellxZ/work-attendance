@@ -13,6 +13,19 @@
     <context:component-scan base-package="com.coder520">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=utf-8</value>
+                        <value>application/json;charset=utf-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
     <!--开启注解驱动-->
     <mvc:annotation-driven/>
     <!--配置velocity-->
@@ -32,6 +45,11 @@
     <!--<mvc:resources mapping="/static/**" location="/static/"/>-->
     <!--配置静态资源第二种方法-->
     <mvc:default-servlet-handler/>
+
+    <!--配置拦截器(全局拦截)，为了让静态资源得以访问，须设置web.xml-->
+    <mvc:interceptors>
+        <bean class="com.coder520.common.interceptor.SessionInterceptor"/>
+    </mvc:interceptors>
     <!--配置velocity页面解析器-->
     <bean class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
         <property name="suffix" value=".vm"/>
