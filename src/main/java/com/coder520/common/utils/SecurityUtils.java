@@ -39,10 +39,7 @@ public class SecurityUtils {
         //加密输入密码
         String md5Pwd = encryptPwd(inputPwd);
         //判断通过返回true
-        if(inputPwd != null && dbPwd != null && md5Pwd.equals(dbPwd)){
-            return true;
-        }
-        return false; //其余的情况都return false，因为不合法
+        return inputPwd != null && dbPwd != null && md5Pwd.equals(dbPwd);
     }
 
 }

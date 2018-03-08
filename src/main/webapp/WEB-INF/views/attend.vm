@@ -310,7 +310,7 @@
             }
         }
         return fmt;
-    }
+    };
 
     function formToJson(form) {
         var result = {};
@@ -337,7 +337,7 @@
         $("#reAttendModal").modal('show');
     }
 
-    var week_CN = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    var week_CN = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
 
     var table;
 

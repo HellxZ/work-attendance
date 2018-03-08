@@ -42,7 +42,7 @@
 		// Prevent multiple instantiations if the script is loaded twice
 		factory( jQuery );
 	}
-}
+};
 (/** @lends <global> */function( $ ) {
 	"use strict";
 
@@ -14945,7 +14945,7 @@
 	 */
 
 	return $.fn.dataTable;
-}));
-
+});
+)
 }(window, document));
 

@@ -17,7 +17,7 @@ public class SessionInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         String uri = request.getRequestURI();
-        if((uri.indexOf("login")>=0)||(uri.indexOf("register")>=0)||(uri.indexOf("attend")>=0)){ //放行登录、注册、打卡
+        if((uri.indexOf("login")>=0)||(uri.indexOf("user/register")>=0)||(uri.indexOf("attend")>=0)){ //放行登录、注册、打卡
             return true;
         }
         User user = (User)request.getSession().getAttribute("userinfo");
@@ -30,12 +30,12 @@ public class SessionInterceptor implements HandlerInterceptor{
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) {
 
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
 
     }
 }
