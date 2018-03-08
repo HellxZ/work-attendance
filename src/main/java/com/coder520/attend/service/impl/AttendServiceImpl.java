@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service("attendServiceImpl")
 public class AttendServiceImpl implements AttendService {
@@ -70,13 +71,22 @@ public class AttendServiceImpl implements AttendService {
      * @Date: 2018/3/8 13:48
      */
     @Override
-    public PageQueryBean getAttendList(QueryConditions queryConditions){
+    public PageQueryBean getAttendList(QueryConditions conditions){
         //查询该表数据量
-        int count = attendMapper.selectAttendListCount(queryConditions);
+        int count = attendMapper.selectAttendListCount(conditions);
+        //返回数据载体
         PageQueryBean pageQueryBean = new PageQueryBean();
         //判断是否有数据
-        //查询 返回list
-
-        return null;
+        if(count>0){
+            pageQueryBean.setCurrentPage(conditions.getCurrentPage());
+            pageQueryBean.setPageSize(conditions.getPageSize());
+            pageQueryBean.setTotalRows(count);
+            //查询 返回list
+            List<Attend> list = attendMapper.selectAttendListByCondition(conditions);
+            //添加数据list
+            pageQueryBean.setItems(list);
+        }
+        //无论数据有无，都返回
+        return pageQueryBean;
     }
 }

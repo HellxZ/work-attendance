@@ -14,20 +14,30 @@
   <sql id="Base_Column_List" >
     id, user_id, attend_date, attend_week, attend_morning, attend_evening, absence, attend_status
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterMap="java.lang.Long" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from attend
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <select id="selectAttendListCount" resultType="int" parameterType="com.coder520.attend.vo.QueryConditions">
+  <select id="selectAttendListCount" resultType="int">
     select
     count(0)
     from attend
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId}
     <if test="startDate != null and endDate != null" >
       and attend_date between #{startDate} and #{endDate}
     </if>
+  </select>
+  <select id="selectAttendListByCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from attend
+    where user_id = #{userId}
+    <if test="startDate != null and endDate != null" >
+      and attend_date between #{startDate} and #{endDate}
+    </if>
+    LIMIT #{startRow},#{pageSize}
   </select>
   <select id="selectAttendByToday" resultMap="BaseResultMap">
     select

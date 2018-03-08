@@ -11,12 +11,40 @@ import java.util.Date;
  */
 public class QueryConditions extends PageQueryBean {
 
-    //用户id
+    /**
+     * 用户id
+     */
     private Long userId;
-    //开始日期
+    /**
+     * 开始日期
+     */
     private String startDate;
-    //结束日期
+    /**
+     * 结束日期
+     */
     private String endDate;
+
+    private String rangeDate;
+    /**
+     * 状态
+     */
+    private Byte attendStatus;
+
+    public Byte getAttendStatus() {
+        return attendStatus;
+    }
+
+    public void setAttendStatus(Byte attendStatus) {
+        this.attendStatus = attendStatus;
+    }
+
+    public String getRangeDate() {
+        return rangeDate;
+    }
+
+    public void setRangeDate(String rangeDate) {
+        this.rangeDate = rangeDate;
+    }
 
     public Long getUserId() {
         return userId;

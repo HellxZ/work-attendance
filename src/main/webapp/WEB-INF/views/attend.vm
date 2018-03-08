@@ -69,7 +69,7 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">退出系统</a>
+                                    <a href="/user/logout" class="btn btn-default btn-flat">退出系统</a>
                                 </div>
                             </li>
                         </ul>
@@ -409,7 +409,7 @@
                             dataType: "json",
                             success: function (result) {
                                 console.log(result);
-                                //console.log(result);
+                                // console.log(result);
                                 //setTimeout仅为测试延迟效果
                                 setTimeout(function () {
                                     //封装返回数据

@@ -4,6 +4,8 @@ import com.coder520.attend.entity.Attend;
 import com.coder520.attend.service.AttendService;
 import com.coder520.attend.vo.QueryConditions;
 import com.coder520.common.page.PageQueryBean;
+import com.coder520.user.entity.User;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +48,12 @@ public class AttendController {
      */
     @RequestMapping("/attendList")
     @ResponseBody
-    public PageQueryBean getAttendList(QueryConditions queryConditions){
-        return attendService.getAttendList(queryConditions);
+    public PageQueryBean getAttendList(QueryConditions condition){
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userinfo");
+        String [] rangeDate = condition.getRangeDate().split("/");
+        condition.setStartDate(rangeDate[0]);
+        condition.setEndDate(rangeDate[1]);
+        condition.setUserId(user.getId());
+        return attendService.getAttendList(condition);
     }
 }
