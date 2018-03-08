@@ -14,9 +14,9 @@ public class QueryConditions extends PageQueryBean {
     //用户id
     private Long userId;
     //开始日期
-    private Date startDate;
+    private String startDate;
     //结束日期
-    private Date endDate;
+    private String endDate;
 
     public Long getUserId() {
         return userId;
@@ -26,19 +26,19 @@ public class QueryConditions extends PageQueryBean {
         this.userId = userId;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 }

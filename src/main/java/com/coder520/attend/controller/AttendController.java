@@ -44,7 +44,7 @@ public class AttendController {
      * @Description: 获取分页后的签到信息
      * @Date: 2018/3/8 13:38
      */
-    @RequestMapping("/signlist")
+    @RequestMapping("/attendList")
     @ResponseBody
     public PageQueryBean getAttendList(QueryConditions queryConditions){
         return attendService.getAttendList(queryConditions);

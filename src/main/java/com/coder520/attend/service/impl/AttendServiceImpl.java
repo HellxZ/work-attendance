@@ -69,9 +69,10 @@ public class AttendServiceImpl implements AttendService {
      * @Description: 根据条件获取列表并分页
      * @Date: 2018/3/8 13:48
      */
+    @Override
     public PageQueryBean getAttendList(QueryConditions queryConditions){
         //查询该表数据量
-        int count = attendMapper.selectAttendListCount(queryConditions.getUserId());
+        int count = attendMapper.selectAttendListCount(queryConditions);
         PageQueryBean pageQueryBean = new PageQueryBean();
         //判断是否有数据
         //查询 返回list

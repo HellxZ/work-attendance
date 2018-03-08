@@ -1,6 +1,7 @@
 package com.coder520.attend.dao;
 
 import com.coder520.attend.entity.Attend;
+import com.coder520.attend.vo.QueryConditions;
 
 public interface AttendMapper {
     int deleteByPrimaryKey(Long id);
@@ -17,5 +18,5 @@ public interface AttendMapper {
 
     Attend selectAttendByToday(long userId);
 
-    int selectAttendListCount(long userId);
+    int selectAttendListCount(QueryConditions queryConditions);
 }
