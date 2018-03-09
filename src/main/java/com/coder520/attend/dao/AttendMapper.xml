@@ -20,6 +20,28 @@
     from attend
     where id = #{id,jdbcType=BIGINT}
   </select>
+  <select id="getTodayAbsenceIds" resultType="long" >
+    SELECT
+      u.id
+    FROM
+      USER u
+    WHERE u.id NOT IN
+      (SELECT
+        user_id
+      FROM
+        attend a
+      WHERE a.attend_date = CURDATE())
+  </select>
+  <select id="getTodayEveningAbsenceList" resultMap="BaseResultMap" >
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM
+      attend
+    WHERE attend_date = CURDATE()
+      AND attend_evening IS NULL
+      AND attend_status = 1
+      AND attend_week NOT IN (6, 7)
+  </select>
   <select id="selectAttendListCount" resultType="int">
     select
     count(0)
@@ -57,6 +79,15 @@
     values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{attendDate,jdbcType=DATE}, 
       #{attendWeek,jdbcType=TINYINT}, #{attendMorning,jdbcType=TIME}, #{attendEvening,jdbcType=TIME}, 
       #{absence,jdbcType=INTEGER}, #{attendStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="batchInsertAttend" parameterType="list">
+    insert into attend (
+      user_id, attend_date,attend_week,
+      absence, attend_status)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.userId}, #{item.attendDate},#{item.attendWeek},#{item.absence}, #{item.attendStatus})
+    </foreach>
   </insert>
   <insert id="insertSelective" parameterType="com.coder520.attend.entity.Attend" >
     insert into attend

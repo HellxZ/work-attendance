@@ -11,8 +11,20 @@ import com.coder520.common.page.PageQueryBean;
  */
 public interface AttendService {
 
-    //签到
+    /**
+     * 签到
+     * @param attend
+     */
     void attend(Attend attend);
-    //分页查询签到信息
+
+    /**
+     * 分页查询签到信息
+     * @param queryConditions
+     * @return
+     */
     PageQueryBean getAttendList(QueryConditions queryConditions);
+    /**
+     * 检查签到
+     */
+    void checkAttend();
 }

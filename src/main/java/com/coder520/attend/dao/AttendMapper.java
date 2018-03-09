@@ -24,4 +24,10 @@ public interface AttendMapper {
     int selectAttendListCount(QueryConditions conditions);
 
     List<Attend> selectAttendListByCondition(QueryConditions conditions);
+
+    List<Long> getTodayAbsenceIds();
+
+    void batchInsertAttend(List<Attend> attendList);
+
+    List<Attend> getTodayEveningAbsenceList();
 }

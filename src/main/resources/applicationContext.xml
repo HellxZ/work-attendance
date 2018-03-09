@@ -21,6 +21,7 @@
     <!--包扫描-->
     <context:component-scan base-package="com.coder520"/>
 
+    <!--定位数据配置文件-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -75,5 +76,8 @@
         <!-- <property name="filters" value="stat" /> -->
         <property name="filters" value="mergeStat"/>
     </bean>
+
+    <!--引入定时器配置-->
+    <import resource="quartzJob.xml"/>
 
 </beans>

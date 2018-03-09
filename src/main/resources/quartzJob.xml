@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 注入需要定时的对象 -->
+    <bean id="attendCheckTask" class="com.coder520.tasks.AttendCheckTask"/>
+    <!--指定定时对象和方法-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 目标任务bean名、方法名 -->
+        <property name="targetObject" ref="attendCheckTask"/>
+        <property name="targetMethod" value="check"/>
+    </bean>
+    <!--调度触发器-->
+    <bean id="checkTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"/>
+        <property name="cronExpression">
+            <!--设置cron表达式-->
+            <value>0/30 * * * * ?</value>
+        </property>
+    </bean>
+    <!--调度工厂-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <!--定义多触发器-->
+            <list>
+                <ref bean="checkTrigger"/>
+            </list>
+        </property>
+    </bean>
+</beans>

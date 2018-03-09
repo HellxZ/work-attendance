@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @Author : Hellxz
  * @Description: 打卡Controller
@@ -48,8 +50,9 @@ public class AttendController {
      */
     @RequestMapping("/attendList")
     @ResponseBody
-    public PageQueryBean getAttendList(QueryConditions condition){
-        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userinfo");
+    public PageQueryBean getAttendList(QueryConditions condition, HttpSession session){
+//        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userinfo");
+        User user = (User)session.getAttribute("userinfo");
         String [] rangeDate = condition.getRangeDate().split("/");
         condition.setStartDate(rangeDate[0]);
         condition.setEndDate(rangeDate[1]);

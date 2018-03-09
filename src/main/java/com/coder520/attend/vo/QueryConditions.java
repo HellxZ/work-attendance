@@ -2,8 +2,6 @@ package com.coder520.attend.vo;
 
 import com.coder520.common.page.PageQueryBean;
 
-import java.util.Date;
-
 /**
  * @Author : Hellxz
  * @Description: 分页+条件查询
@@ -23,7 +21,9 @@ public class QueryConditions extends PageQueryBean {
      * 结束日期
      */
     private String endDate;
-
+    /**
+     * 日期范围
+     */
     private String rangeDate;
     /**
      * 状态
