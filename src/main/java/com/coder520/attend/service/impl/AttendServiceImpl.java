@@ -118,7 +118,7 @@ public class AttendServiceImpl implements AttendService {
                 attend.setAttendWeek((byte)DateUtils.getWeek());
                 attend.setAttendDate(new Date());
                 attend.setAbsence(ABSENCE_DURING_TODAY);
-                attend.setAttendStatus((byte)ABSENCE_STATUS);
+                attend.setAttendStatus(ABSENCE_STATUS);
                 attendList.add(attend);
             }
             //批量插入异常签到信息
