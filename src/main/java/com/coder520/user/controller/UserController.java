@@ -1,6 +1,6 @@
 package com.coder520.user.controller;
 
-import com.coder520.common.utils.SecurityUtils;
+import com.coder520.common.utils.MD5Utils;
 import com.coder520.user.entity.User;
 import com.coder520.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class UserController {
     @RequestMapping("/register")
     @ResponseBody
     public String insert(@RequestBody User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-        user.setPassword(SecurityUtils.encryptPwd(user.getPassword()));
+        user.setPassword(MD5Utils.encryptPwd(user.getPassword()));
         int i = userService.register(user);
         return "registerSucceed";
     }

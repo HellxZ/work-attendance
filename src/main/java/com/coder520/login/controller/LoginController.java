@@ -1,7 +1,6 @@
 package com.coder520.login.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.coder520.common.utils.SecurityUtils;
+import com.coder520.common.utils.MD5Utils;
 import com.coder520.user.entity.User;
 import com.coder520.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class LoginController {
             return "invalidLogin";
         }
         //校验密码是否正确，通过将该user对象保存session，并返回一个通过signal
-        boolean checkResult = SecurityUtils.checkPwd(password, user.getPassword());
+        boolean checkResult = MD5Utils.checkPwd(password, user.getPassword());
         //不通过返回一个校验失败signal
         if(checkResult){
             request.getSession().setAttribute("userinfo",user);

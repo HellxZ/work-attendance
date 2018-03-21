@@ -51,7 +51,7 @@ public class AttendController {
     @RequestMapping("/attendList")
     @ResponseBody
     public PageQueryBean getAttendList(QueryConditions condition, HttpSession session){
-//        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("userinfo");
+//        User user = (User) MD5Utils.getSubject().getSession().getAttribute("userinfo");
         User user = (User)session.getAttribute("userinfo");
         String [] rangeDate = condition.getRangeDate().split("/");
         condition.setStartDate(rangeDate[0]);

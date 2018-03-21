@@ -1,5 +1,7 @@
 package com.coder520.user.entity;
 
+import java.util.List;
+
 public class User {
     private Long id;
 
@@ -7,11 +9,21 @@ public class User {
 
     private String password;
 
-    private String realName;
-
     private String mobile;
 
+    private String realName;
+
     private String headImage;
+
+    private List<Role> roleList;
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
 
     public Long getId() {
         return id;
@@ -37,20 +49,20 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName == null ? null : realName.trim();
-    }
-
     public String getMobile() {
         return mobile;
     }
 
     public void setMobile(String mobile) {
         this.mobile = mobile == null ? null : mobile.trim();
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
     }
 
     public String getHeadImage() {

@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  * @Description: 安全工具
  * @Date : 2018/3/7 9:46
  */
-public class SecurityUtils {
+public class MD5Utils {
 
     /**
      * @Description: 加密密码

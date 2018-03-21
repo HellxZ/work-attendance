@@ -122,4 +122,7 @@
     <!--引入定时器配置-->
     <import resource="quartzJob.xml"/>
 
+    <!--引入shiro-->
+    <import resource="spring-shiro.xml"/>
+
 </beans>
